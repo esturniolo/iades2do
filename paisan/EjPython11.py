@@ -4,18 +4,19 @@ salario = 10000
 medioAguinaldo = 5000
 gastosFijos = 8500
 deuda = 50000
-meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+meses = [1,2,3,4,5,6,7,8,9,10,11,12]
 totalMeses = 0
 
 while deuda > 0: 
     for i in meses:
-        if meses == "Diciembre":
+        if i == 3 or i == 6:
             sobranteSalario= salario - gastosFijos
             deuda = deuda - sobranteSalario - medioAguinaldo
+            totalMeses= totalMeses + 1
         else:
             sobranteSalario = salario - gastosFijos
             deuda = deuda - sobranteSalario
-    totalMeses= totalMeses + 1
+            totalMeses= totalMeses + 1
 
 
 print("La deuda finalizó en",totalMeses, "meses.")
