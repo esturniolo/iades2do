@@ -11,10 +11,11 @@ cajaAncho = float (0.60)
 cajaProfundidad = float (0.60)
 
 empresasYCostos = []
+empresas = ["Andreani","OCA","Transportes del Norte","LogisticAR S.A.", "Serfiglio Hnos."]
 
 cajasATransportar = 10000
 
-empresas = ["Andreani","OCA","Transportes del Norte","LogisticAR S.A.", "Serfiglio Hnos."]
+
 
 for i in empresas:
     print("Empresa:",i)
