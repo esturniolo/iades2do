@@ -1,5 +1,12 @@
 #!/usr/local/bin/python3
 
+#Ejercicio de cálculo de finalización de deuda, dados los importes de gastos y sueldos, incluyendo aguinaldos.
+
+import os
+
+os.system('cls')
+os.system('clear')
+
 salario = 10000
 medioAguinaldo = 5000
 gastosFijos = 8500

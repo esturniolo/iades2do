@@ -1,4 +1,10 @@
+#Ejercicio de cálculo de superficie de un parque y cálculo de la cantidad necesaria de bloques de pasto que lo deberían cubrir.
 import math
+
+import os
+
+os.system('cls')
+os.system('clear')
 
 #Valores expresados en centímetros
 

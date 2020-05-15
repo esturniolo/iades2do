@@ -1,3 +1,10 @@
+#Ejercicio de calculo de recaudación total de un estadio, según su precio de los distintos tipos de localidades y socios.
+
+import os
+
+os.system('cls')
+os.system('clear')
+
 ltr = 50000
 lpl = 15000
 lpp = 5000

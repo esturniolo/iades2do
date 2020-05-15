@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+#Ejercicio de cálculo de infección de personas y camas disponibles. Calcula cuanto tiempo resistirá el sistema antes del colapso de camas.
+
 import os
 from time import sleep
 

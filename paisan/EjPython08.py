@@ -1,5 +1,12 @@
 #!/usr/bin/python3
 
+#Ejercicio de cálculo de precio de un producto, el dinero disponible, el sobrante y lo que falta para comprar un producto más.
+
+import os
+
+os.system('cls')
+os.system('clear')
+
 print ("")
 
 precioEmpanadas = int(input("Cuanto cuesta cada empanada?:     "))

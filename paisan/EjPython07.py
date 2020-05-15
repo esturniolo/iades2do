@@ -1,20 +1,15 @@
 #!/usr/bin/python3
 
+#Ejercicio de cálculo de precio de un producto, el dinero disponible y el sobrante.
+
+import os
+
+os.system('cls')
+os.system('clear')
+
 print ("")
 
-
-def preguntarEmpanada():
-    global precioEmpanadas 
-    correcto=False
-    num=0
-    while(not correcto):
-        try:
-            precioEmpanadas = int(input("Cuanto cuesta cada empanada?:     "))
-            correcto=True
-        except ValueError:
-            print('Ha-Ha... Muy chistoso. Ahora decime cuanto vale cada empanada.')
-
-    return num
+precioEmpanadas = int(input("Cuanto cuesta cada empanada?:     "))
 
 def preguntarDinero():
     global dineroEfectivo 
@@ -25,37 +20,24 @@ def preguntarDinero():
             dineroEfectivo = int(input("Cuanto dinero tengo? (No pongas los centavos que no los quiere nadie. Solo número redondos):    "))
             correcto=True
         except ValueError:
-            print('No te pases de gracioso y poné lo que tenés en la billetera.')
+            print('No te pases de gracioso y poné lo que tenés en la billetera')
      
     return num
+ 
+numero = preguntarDinero()
 
-preguntarEmpanada()
-#numero = preguntarDinero()
+totalEmpanadas = dineroEfectivo // precioEmpanadas
+dineroSobrante = dineroEfectivo % precioEmpanadas
 
-if precioEmpanadas < 0: 
-    print ("Encima te tengo que pagar para comer?")
+if dineroEfectivo < 0: 
+    print ("Estás debiendo guita y encima querés comer?")
     print ("")
-elif precioEmpanadas == 0:
-    print ("Empanadas gratis!!!! Wiiiiiiiiiiii!!!!")
+elif dineroEfectivo == 0:
+    print ("Sali a punguear a alguien sino hoy no comés")
     print ("")
-#elif precioEmpanadas > dineroEfectivo:
-#    print ("No te alcanza para nada. POBRE!")
-#    print ("")
+elif precioEmpanadas > dineroEfectivo:
+    print ("No te alcanza para nada. POBRE!")
+    print ("")
 else:
-    global totalEmpanadas
-    global dineroSobrante
-    totalEmpanadas = dineroEfectivo // precioEmpanadas
-    dineroSobrante = dineroEfectivo % precioEmpanadas
-    preguntarDinero()
-    if dineroEfectivo < 0: 
-        print ("Estás debiendo guita y encima querés comer?")
-        print ("")
-    elif dineroEfectivo == 0:
-        print ("Sali a punguear a alguien sino hoy no comés")
-        print ("")
-    elif precioEmpanadas > dineroEfectivo:
-        print ("No te alcanza para nada. POBRE!")
-        print ("")
-    else:
-        print ("Puedo comprarme",str(totalEmpanadas),"empanadas y me sobraron",str(dineroSobrante),"pesos.")
-        print ("")
+    print ("Puedo comprarme",str(totalEmpanadas),"empanadas y me sobraron",str(dineroSobrante),"pesos.")
+    print ("")
