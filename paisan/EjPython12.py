@@ -10,21 +10,23 @@ salarioEmpleado = 1000
 valorAlfajorUn = float(1.5)
 produccionAlfajores = 3000
 antiguedadEmpresa = 1
+totalGanacia = 1
+totalSalarios = 0
+listaGanancia =[]
 
-#while totalGanacia > totalSalarios
-for cantidadEmpleados in range(1,20,1):
+while totalGanacia > totalSalarios:
     totalVenta = produccionAlfajores * valorAlfajorUn
     totalSalarios = salarioEmpleado * cantidadEmpleados
     totalGanacia = totalVenta - totalSalarios
-    if totalSalarios > totalGanacia:
-        print("El total de empleados que puede tener sin reportar pérdidas es de",(cantidadEmpleados-1))
-    else:
-        print("Seguimos teniendo ganancia durante el mes",(antiguedadEmpresa))
-        print("Este mes se generó un total de $",(totalGanacia),"en ganancias.")
-    cantidadEmpleados = cantidadEmpleados + 1
     produccionAlfajores = produccionAlfajores + 3000
     valorAlfajorUnTmp = (valorAlfajorUn * 0.1) - valorAlfajorUn
     valorAlfajorUn = abs(valorAlfajorUnTmp)
-
     antiguedadEmpresa = antiguedadEmpresa + 1
+    listaGanancia.append([totalGanacia,cantidadEmpleados])
+    cantidadEmpleados = cantidadEmpleados + 1
 
+
+
+print("Se pueden tener",(cantidadEmpleados - 1),"empleados sin reportar pérdidas")
+print("La ganancia máxima es de",max(listaGanancia)[0],"con",max(listaGanancia)[1],"empleados")
+print("")
