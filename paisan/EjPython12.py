@@ -13,8 +13,9 @@ antiguedadEmpresa = 1
 totalGanacia = 1
 totalSalarios = 0
 listaGanancia =[]
+totalVenta = 1
 
-while totalGanacia > totalSalarios:
+while totalVenta > totalSalarios:
     totalVenta = produccionAlfajores * valorAlfajorUn
     totalSalarios = salarioEmpleado * cantidadEmpleados
     totalGanacia = totalVenta - totalSalarios
