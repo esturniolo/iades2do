@@ -1,3 +1,4 @@
+import shutil
 
 def newUser():
     f = open("infoEmpleados.txt", "a")
@@ -14,16 +15,13 @@ def removeUser():
     employeeId= input(str("Ingrese el numero de legajo del empleado a dar de baja: "))
     warning= print("\nUsted ingresó el legajo", employeeId,". Está seguro de dar de baja este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
     confirmation = input("S/N\n")
-    if ( confirmation == "S"):
-        
+    if (confirmation == "S"):
+        f.seek(0)
         idRemoved = 0
         for line in listEmployeeId:
             result = (line[:3])
             if (result == employeeId):
-            # if result!=employeeId:
-                # f.seek(0)
                 listEmployeeId.remove(line)
-                # f.write(line)
                 idRemoved = 1
             elif result!=employeeId:
                 f.write(line)
@@ -31,14 +29,15 @@ def removeUser():
             print("El legajo",employeeId,"fue eliminado satisfactoriamente.")
         else:
             print("El legajo",employeeId,"no existe.")
+    elif (confirmation == "N"):
+        print("\nComando cancelado.\n")
     for line in listEmployeeId:
         print (line)
     f.close()
-    # elif (estaSeguro.upper() == "N"):
+    shutil.move("infoEmpleados.txt","infoEmpleados.old")
+    f = open("infoEmpleados.txt", "w")
+    f.writelines(listEmployeeId)
+    f.close() 
 
 
 removeUser()
-
-# for line in lines:
-#      if line!=result+"\n":
-#        f.write(line)
