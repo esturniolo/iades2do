@@ -1,3 +1,4 @@
-111      Primera         87687686 
-333      Cuarta        $  45000   
-
+LEGAJO     NOMBRE          SALARIO    
+006        Lalo            $88888      
+004        Ruth            $111122222  
+001        Carlos          $43534353543 
