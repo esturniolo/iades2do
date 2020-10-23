@@ -78,8 +78,6 @@ def removeUser():
         elif (confirmation == "N"):
             print("\nComando cancelado.")
             input("\nPresione una tecla para continuar...")
-        for line in listEmployeeId:
-            print (line)
         f.close()
         shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
         f = open("infoEmpleados.txt", "w")
