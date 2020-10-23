@@ -36,115 +36,132 @@ def newUser():
         print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def removeUser():
-    f = open("infoEmpleados.txt", "r+")
-    listEmployeeId= f.readlines()
-    employeeId= input(str("Ingrese el numero de legajo del empleado a dar de baja: "))
-    print("\nUsted ingresó el legajo", employeeId,". Está seguro de dar de baja este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
-    confirmation = input("S/N\n")
-    if (confirmation == "S"):
-        f.seek(0)
-        idRemoved = 0
+    if os.path.isfile("infoEmpleados.txt"):
+        f = open("infoEmpleados.txt", "r+")
+        listEmployeeId= f.readlines()
+        employeeId= input(str("Ingrese el numero de legajo del empleado a dar de baja: "))
+        print("\nUsted ingresó el legajo", employeeId,". Está seguro de dar de baja este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
+        confirmation = input("S/N\n")
+        if (confirmation == "S"):
+            f.seek(0)
+            idRemoved = 0
+            for line in listEmployeeId:
+                result = (line[:3])
+                if (result == employeeId):
+                    listEmployeeId.remove(line)
+                    idRemoved = 1
+                elif result!=employeeId:
+                    f.write(line)
+            if (idRemoved == 1):
+                print("El legajo",employeeId,"fue eliminado satisfactoriamente.")
+            else:
+                print("El legajo",employeeId,"no existe.")
+        elif (confirmation == "N"):
+            print("\nComando cancelado.")
+            input("\nPresione una tecla para continuar...")
         for line in listEmployeeId:
-            result = (line[:3])
-            if (result == employeeId):
-                listEmployeeId.remove(line)
-                idRemoved = 1
-            elif result!=employeeId:
-                f.write(line)
-        if (idRemoved == 1):
-            print("El legajo",employeeId,"fue eliminado satisfactoriamente.")
-        else:
-            print("El legajo",employeeId,"no existe.")
-    elif (confirmation == "N"):
-        print("\nComando cancelado.")
-        input("\nPresione una tecla para continuar...")
-    for line in listEmployeeId:
-        print (line)
-    f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
-    f = open("infoEmpleados.txt", "w")
-    f.writelines(listEmployeeId)
-    f.close() 
+            print (line)
+        f.close()
+        shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
+        f = open("infoEmpleados.txt", "w")
+        f.writelines(listEmployeeId)
+        f.close()
+    else:
+         print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def updateNameUser():
-    f = open("infoEmpleados.txt", "r+")
-    listEmployeeId= f.readlines()
-    employeeId= input(str("Ingrese el numero de legajo para modificar su nombre: "))
-    print("\nUsted ingresó el legajo", employeeId,". Está seguro que desea modificar este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
-    confirmation = input("S/N\n")
-    newNameEmployee= input("Ingrese el nuevo nombre del empleado: ")
-    if (confirmation == "S"):
-        f.seek(0)
-        idRemoved = 0
-        for line in listEmployeeId:
-            result = (line[:3])
-            if (result == employeeId):
-                employeeSalary = (line[28:39])
-                listEmployeeId.remove(line)
-                idRemoved = 1
-            elif result!=employeeId:
-                f.write(line)
-        if (idRemoved == 1):
-            print("El legajo",employeeId,"fue modificado satisfactoriamente.")
-        else:
-            print("El legajo",employeeId,"no existe.")
-    elif (confirmation == "N"):
-        print("\nComando cancelado.")
-        input("\nPresione una tecla para continuar...")
-    f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
-    f = open("infoEmpleados.txt", "w")
-    f.writelines(listEmployeeId)
-    f.close() 
-    f = open("infoEmpleados.txt", "a")
-    f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, newNameEmployee, employeeSalary))
+    if os.path.isfile("infoEmpleados.txt"):
+        f = open("infoEmpleados.txt", "r+")
+        listEmployeeId= f.readlines()
+        employeeId= input(str("Ingrese el numero de legajo para modificar su nombre: "))
+        print("\nUsted ingresó el legajo", employeeId,". Está seguro que desea modificar este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
+        confirmation = input("S/N\n")
+        newNameEmployee= input("Ingrese el nuevo nombre del empleado: ")
+        employeeSalary="0"
+        if (confirmation == "S"):
+            f.seek(0)
+            idRemoved = 0
+            for line in listEmployeeId:
+                result = (line[:3])
+                if (result == employeeId):
+                    employeeSalary = (line[28:39])
+                    listEmployeeId.remove(line)
+                    idRemoved = 1
+                elif result!=employeeId:
+                    f.write(line)
+            if (idRemoved == 1):
+                print("El legajo",employeeId,"fue modificado satisfactoriamente.")
+            else:
+                print("El legajo",employeeId,"no existe.")
+        elif (confirmation == "N"):
+            print("\nComando cancelado.")
+            input("\nPresione una tecla para continuar...")
+        f.close()
+        shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
+        f = open("infoEmpleados.txt", "w")
+        f.writelines(listEmployeeId)
+        f.close() 
+        f = open("infoEmpleados.txt", "a")
+        f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, newNameEmployee, employeeSalary))
+    else:
+         print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def updateSalaryUser():
-    f = open("infoEmpleados.txt", "r+")
-    listEmployeeId= f.readlines()
-    employeeId= input(str("Ingrese el numero de legajo para modificar su salario: "))
-    print("\nUsted ingresó el legajo", employeeId,". Está seguro que desea modificar este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
-    confirmation = input("S/N\n")
-    newSalaryEmployee= input("Ingrese el nuevo salario bruto del empleado: ")
-    if (confirmation == "S"):
-        f.seek(0)
-        idRemoved = 0
-        for line in listEmployeeId:
-            result = (line[:3])
-            if (result == employeeId):
-                employeeName = (line[11:22])
-                listEmployeeId.remove(line)
-                idRemoved = 1
-            elif result!=employeeId:
-                f.write(line)
-        if (idRemoved == 1):
-            print("El legajo",employeeId,"fue modificado satisfactoriamente.")
-        else:
-            print("El legajo",employeeId,"no existe.")
-    elif (confirmation == "N"):
-        print("\nComando cancelado.")
-        input("\nPresione una tecla para continuar...")
-    f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
-    f = open("infoEmpleados.txt", "w")
-    f.writelines(listEmployeeId)
-    f.close() 
-    f = open("infoEmpleados.txt", "a")
-    f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, employeeName, newSalaryEmployee))
-    f.close()
+    if os.path.isfile("infoEmpleados.txt"):
+        f = open("infoEmpleados.txt", "r+")
+        listEmployeeId= f.readlines()
+        employeeId= input(str("Ingrese el numero de legajo para modificar su salario: "))
+        print("\nUsted ingresó el legajo", employeeId,". Está seguro que desea modificar este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
+        confirmation = input("S/N\n")
+        newSalaryEmployee= input("Ingrese el nuevo salario bruto del empleado: ")
+        employeeName=""
+        if (confirmation == "S"):
+            f.seek(0)
+            idRemoved = 0
+            for line in listEmployeeId:
+                result = (line[:3])
+                if (result == employeeId):
+                    employeeName = (line[11:22])
+                    listEmployeeId.remove(line)
+                    idRemoved = 1
+                elif result!=employeeId:
+                    f.write(line)
+            if (idRemoved == 1):
+                print("El legajo",employeeId,"fue modificado satisfactoriamente.")
+            else:
+                print("El legajo",employeeId,"no existe.")
+        elif (confirmation == "N"):
+            print("\nComando cancelado.")
+            input("\nPresione una tecla para continuar...")
+        f.close()
+        shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
+        f = open("infoEmpleados.txt", "w")
+        f.writelines(listEmployeeId)
+        f.close() 
+        f = open("infoEmpleados.txt", "a")
+        f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, employeeName, newSalaryEmployee))
+        f.close()
+    else:
+        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def showUsers():
-    f = open("infoEmpleados.txt", "r")
-    showEmployees = f.read()
-    print(showEmployees)
-    f.close()
+    if os.path.isfile("infoEmpleados.txt"):
+        f = open("infoEmpleados.txt", "r")
+        showEmployees = f.read()
+        print(showEmployees)
+        f.close()
+    else:
+        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def backup():
-    myPath = input("Ingrese el path completo (Ej C:\directorioBackUp) de donde quiere hacer su backup. Si el directorio no existe, el programa lo creará por usted: ")
-    if not os.path.isdir(myPath):
-        os.makedirs(myPath)
-    shutil.copy("infoEmpleados.txt", myPath)
-    os.remove("infoEmpleados.tmp")
+    if os.path.isfile("infoEmpleados.txt"):
+        myPath = input("Ingrese el path completo (Ej C:\directorioBackUp) de donde quiere hacer su backup. Si el directorio no existe, el programa lo creará por usted: ")
+        if not os.path.isdir(myPath):
+            os.makedirs(myPath)
+        shutil.copy("infoEmpleados.txt", myPath)
+        os.remove("infoEmpleados.tmp")
+    else:
+        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def menu():
     while True:
