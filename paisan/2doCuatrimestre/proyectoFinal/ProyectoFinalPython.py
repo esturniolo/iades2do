@@ -13,6 +13,18 @@ def createFile():
         else:
             print("\nError al crear el archivo.\n")
 
+def showUsers():
+    if os.path.isfile("infoEmpleados.txt"):
+        f = open("infoEmpleados.txt", "r")
+        f.seek(39)
+        showEmployeesSorted = f.readlines()
+        f.close()
+        print("{0:<10} {1:<15} {2:<10} \n".format("LEGAJO", "NOMBRE", "SALARIO"))
+        for ele in sorted(showEmployeesSorted): 
+            print(ele)
+    else:
+        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
+
 def newUser():
     if os.path.isfile("infoEmpleados.txt"):
         f = open('infoEmpleados.txt', "r")
@@ -24,7 +36,14 @@ def newUser():
         if (lastLine.find(substring) != -1):
             print("No hay ningún usuario en la lista.")
         else: 
-            print("El último usuario en la lista es:\n", lastLine,"\n")
+            # print("El último usuario en la lista es:\n", lastLine,"\n")
+            print("\n                   *-*-*-* IMPORTANTE *-*-*-*\n\nSi tiene dudas con el último usuario ingresado, por favor revise este dato con la \nopción 6 'Listar Usuarios' para evitar usuarios duplicados.\n")
+            print("Desea revisar esta opción ahora?")
+            check6 = input("S/N\n")
+            if (check6=="S"):
+                os.system('clear')
+                showUsers()
+                print("\n")
         idEmployee= input("Ingrese el numero de legajo del empleado en formato de 3 números. Ejemplo 001: ")
         nameEmployee= input("Ingrese el nombre del empleado: ")
         salaryEmployee= input("Ingrese el salario bruto del empleado: ")
@@ -144,15 +163,6 @@ def updateSalaryUser():
     else:
         print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
-def showUsers():
-    if os.path.isfile("infoEmpleados.txt"):
-        f = open("infoEmpleados.txt", "r")
-        showEmployees = f.read()
-        print(showEmployees)
-        f.close()
-    else:
-        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
-
 def backup():
     if os.path.isfile("infoEmpleados.txt"):
         myPath = input("Ingrese el path completo (Ej C:\directorioBackUp) de donde quiere hacer su backup. Si el directorio no existe, el programa lo creará por usted: ")
@@ -180,6 +190,7 @@ def menu():
         print(118 * "-")
         print("")
         bye = input("Su opción: ")
+        print("\n")
 
         if (bye=='1'):
             createFile()
