@@ -1,5 +1,0 @@
-LEGAJO     NOMBRE          SALARIO    
-003        Julio           $432342     
-004        Federica        $1215551    
-005        Bernardo        $4262       
-001        GAROLA          $45423       
