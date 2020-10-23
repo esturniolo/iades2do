@@ -33,7 +33,7 @@ def newUser():
         f.write(str(data))
         f.close()
     else:
-        print("El archivo no existe. Por faorutilice la opción 1 para crearlo.")
+        print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
 def removeUser():
     f = open("infoEmpleados.txt", "r+")
@@ -56,11 +56,12 @@ def removeUser():
         else:
             print("El legajo",employeeId,"no existe.")
     elif (confirmation == "N"):
-        print("\nComando cancelado.\n")
+        print("\nComando cancelado.")
+        input("\nPresione una tecla para continuar...")
     for line in listEmployeeId:
         print (line)
     f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.old")
+    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
     f = open("infoEmpleados.txt", "w")
     f.writelines(listEmployeeId)
     f.close() 
@@ -88,9 +89,10 @@ def updateNameUser():
         else:
             print("El legajo",employeeId,"no existe.")
     elif (confirmation == "N"):
-        print("\nComando cancelado.\n")
+        print("\nComando cancelado.")
+        input("\nPresione una tecla para continuar...")
     f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.old")
+    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
     f = open("infoEmpleados.txt", "w")
     f.writelines(listEmployeeId)
     f.close() 
@@ -120,9 +122,10 @@ def updateSalaryUser():
         else:
             print("El legajo",employeeId,"no existe.")
     elif (confirmation == "N"):
-        print("\nComando cancelado.\n")
+        print("\nComando cancelado.")
+        input("\nPresione una tecla para continuar...")
     f.close()
-    shutil.move("infoEmpleados.txt","infoEmpleados.old")
+    shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
     f = open("infoEmpleados.txt", "w")
     f.writelines(listEmployeeId)
     f.close() 
@@ -141,6 +144,7 @@ def backup():
     if not os.path.isdir(myPath):
         os.makedirs(myPath)
     shutil.copy("infoEmpleados.txt", myPath)
+    os.remove("infoEmpleados.tmp")
 
 def menu():
     while True:
@@ -154,7 +158,7 @@ def menu():
         print("4. Modificar nombre de usuario existente.")
         print("5. Modificar salario de usuario existente.")
         print("6. Listar usuarios.")
-        print("7. Realizar backup.")
+        print("7. Realizar backup y borrar archivos temporales.")
         print("8. Salir.")
         print(118 * "-")
         print("")
