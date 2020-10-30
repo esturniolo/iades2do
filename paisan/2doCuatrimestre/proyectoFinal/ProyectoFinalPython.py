@@ -61,7 +61,7 @@ def removeUser():
         employeeId= input(str("Ingrese el numero de legajo del empleado a dar de baja: "))
         print("\nUsted ingresó el legajo", employeeId,". Está seguro de dar de baja este legajo? \nESTA ACCION NO SE PUEDE DESHACER")
         confirmation = input("S/N\n")
-        if (confirmation == "S"):
+        if (confirmation.upper() == "S"):
             f.seek(0)
             idRemoved = 0
             for line in listEmployeeId:
@@ -75,7 +75,7 @@ def removeUser():
                 print("El legajo",employeeId,"fue eliminado satisfactoriamente.")
             else:
                 print("El legajo",employeeId,"no existe.")
-        elif (confirmation == "N"):
+        elif (confirmation.upper() == "N"):
             print("\nComando cancelado.")
             input("\nPresione una tecla para continuar...")
         f.close()
@@ -95,7 +95,7 @@ def updateNameUser():
         confirmation = input("S/N\n")
         newNameEmployee= input("Ingrese el nuevo nombre del empleado: ")
         employeeSalary="0"
-        if (confirmation == "S"):
+        if (confirmation.upper().upper() == "S"):
             f.seek(0)
             idRemoved = 0
             for line in listEmployeeId:
@@ -110,16 +110,18 @@ def updateNameUser():
                 print("El legajo",employeeId,"fue modificado satisfactoriamente.")
             else:
                 print("El legajo",employeeId,"no existe.")
-        elif (confirmation == "N"):
+        elif (confirmation.upper() == "N"):
             print("\nComando cancelado.")
             input("\nPresione una tecla para continuar...")
-        f.close()
-        shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
-        f = open("infoEmpleados.txt", "w")
-        f.writelines(listEmployeeId)
-        f.close() 
-        f = open("infoEmpleados.txt", "a")
-        f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, newNameEmployee, employeeSalary))
+            cancel = 1
+        if (cancel!=1):
+            f.close()
+            shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
+            f = open("infoEmpleados.txt", "w")
+            f.writelines(listEmployeeId)
+            f.close() 
+            f = open("infoEmpleados.txt", "a")
+            f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, newNameEmployee, employeeSalary))
     else:
          print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
@@ -132,7 +134,7 @@ def updateSalaryUser():
         confirmation = input("S/N\n")
         newSalaryEmployee= input("Ingrese el nuevo salario bruto del empleado: ")
         employeeName=""
-        if (confirmation == "S"):
+        if (confirmation.upper() == "S"):
             f.seek(0)
             idRemoved = 0
             for line in listEmployeeId:
@@ -147,17 +149,19 @@ def updateSalaryUser():
                 print("El legajo",employeeId,"fue modificado satisfactoriamente.")
             else:
                 print("El legajo",employeeId,"no existe.")
-        elif (confirmation == "N"):
+        elif (confirmation.upper() == "N"):
             print("\nComando cancelado.")
             input("\nPresione una tecla para continuar...")
-        f.close()
-        shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
-        f = open("infoEmpleados.txt", "w")
-        f.writelines(listEmployeeId)
-        f.close() 
-        f = open("infoEmpleados.txt", "a")
-        f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, employeeName, newSalaryEmployee))
-        f.close()
+            cancel = 1
+        if (cancel!=1):
+            f.close()
+            shutil.move("infoEmpleados.txt","infoEmpleados.tmp")
+            f = open("infoEmpleados.txt", "w")
+            f.writelines(listEmployeeId)
+            f.close() 
+            f = open("infoEmpleados.txt", "a")
+            f.write("{0:<10} {1:<15} ${2:<10} \n".format(employeeId, employeeName, newSalaryEmployee))
+            f.close()
     else:
         print("El archivo no existe. Por favor utilice la opción 1 para crearlo.")
 
